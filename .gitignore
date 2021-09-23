@@ -1,0 +1,13 @@
+.DS_Store
+.vscode
+.secrets.json
+.openzeppelin/dev-*.json
+.openzeppelin/unknown-*.json
+.openzeppelin/.session
+node_modules
+build/source
+cache/
+solidity-files-cache.json
+#*_flat.sol
+.openzeppelin
+artifacts/
