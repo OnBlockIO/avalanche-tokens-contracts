@@ -1,6 +1,5 @@
 // Load dependencies
 const { expect } = require('chai');
-const { deployProxy } = require('@openzeppelin/truffle-upgrades');
 const {
   BN,           // Big Number support
   constants,    // Common constants, like the zero address and largest integers

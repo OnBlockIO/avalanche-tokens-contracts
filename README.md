@@ -15,21 +15,27 @@ hardhat compile
 
 Using hardhat to deploy proxy contracts
 
-Contracts can be deployed
+Contracts can be deployed with the following commands
 
 #### locally
 
 ```
-hardhat run scripts/deployERC721.js  
+hardhat deploy  
 
-hardhat run scripts/deployERC1155.js
 ```
 
 #### to network
 ```
-hardhat --network <network_name> scripts/<deploy_script>.js
+hardhat --network <network_name> deploy
 ```
-For local deployment ganache must be started and private keys saved into
+
+deploy individually to testnet:
+
+```
+hardhat --network testnet deploy --tags GhostMarketERC1155
+```
+
+For local deployment ganache-cli can be optionally used with the keys from:  
 
 ```
 .secrets.json
@@ -40,21 +46,18 @@ For local deployment ganache must be started and private keys saved into
 tests can be run with:
 
 ```
-./runGhostMarketERC721_tests.sh
-```
-
-default network is `test` or a network parameter can be added
-
-```
-./runGhostMarketERC721_tests.sh polygontestnet
+hardhat test
 ```
 
 ## Verifying contracts
 
 ```
-hardhat verify --network <network_name> <0x_contract_address>
+hardhat --network <network_name> sourcify
 ```
-
+example:
+```
+hardhat --network testnet sourcify
+```
 Check if verification was a success:
 
 [testnet](https://cchain.explorer.avax-test.network/)
@@ -65,7 +68,7 @@ Check if verification was a success:
 
 choose a test file
 ```
-truffle test/<testname>.js
+hardhat test test/<testname>.js
 ```
 
 with the .only flag individual test can be run  
