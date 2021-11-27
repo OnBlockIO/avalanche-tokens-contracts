@@ -2,6 +2,7 @@ import 'dotenv/config';
 import {HardhatUserConfig} from 'hardhat/types';
 import 'hardhat-deploy';
 import '@nomiclabs/hardhat-ethers';
+import '@nomiclabs/hardhat-etherscan';
 import 'hardhat-gas-reporter';
 import '@typechain/hardhat';
 import 'solidity-coverage';
@@ -15,6 +16,7 @@ if (process.env.HARDHAT_FORK) {
 import {
   MAINNET_PRIVATE_KEYS,
   TESTNET_PRIVATE_KEYS,
+  SNOWTRACE_API_KEY,
 } from './.secrets.json'
 
 const config: HardhatUserConfig = {
@@ -57,6 +59,9 @@ const config: HardhatUserConfig = {
       url: 'https://api.avax.network/ext/bc/C/rpc',
       accounts: MAINNET_PRIVATE_KEYS
     },
+  },
+  etherscan: {
+    apiKey: SNOWTRACE_API_KEY
   },
   paths: {
     sources: 'src',
