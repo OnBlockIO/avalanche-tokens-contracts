@@ -1,4 +1,4 @@
-# GhostMarket NFT ERC721 & ERC1155 Contracts
+# GhostMarket Avalanche NFT ERC721 & ERC1155 Contracts
 ## Deployed Contracts:
 
 #### GhostMarketERC721
@@ -19,43 +19,50 @@ https://snowtrace.io/address/0x26d583e2cda958b13cc319fad124aa729f8a196e
 ## Audit
 
 Coming soon...
+
 ## Technical Information
 
 Upgradable ERC721 & ERC1155 Contract.
 
 Using OpenZeppelin contracts.
+
 ### Compiling contracts
 ```
 hardhat compile
 ```
+
 ### Deploying Proxy
 
 Using hardhat to deploy proxy contracts
 
-Contracts can be deployed with the following commands
+Contracts can be deployed
 
 #### locally
 
 ```
-hardhat deploy  
+hardhat run scripts/deployERC721.js  
 
+hardhat run scripts/deployERC1155.js
 ```
 
 #### to network
 ```
-hardhat --network <network_name> deploy
+hardhat run --network <network_name> scripts/<deploy_script>.js
 ```
-
-deploy individually to testnet:
-
-```
-hardhat --network testnet deploy --tags GhostMarketERC1155
-```
-
-For local deployment ganache-cli can be optionally used with the keys from:  
+For local deployment ganache must be started and private keys saved into
 
 ```
 .secrets.json
+```
+
+secrets.json structure:
+
+```
+{
+    "AVALANCHE_TESTNET_PRIVATE_KEY": ["key1","key1"],
+    "AVALANCHE_MAINNET_PRIVATE_KEY": ["key1","key1"],
+    "LOCAL_PRIVATE_KEYS": ["key1","key1"],
+}
 ```
 
 ## Testing
@@ -63,18 +70,21 @@ For local deployment ganache-cli can be optionally used with the keys from:
 tests can be run with:
 
 ```
-hardhat test
+./runGhostMarketERC721_tests.sh
+```
+
+default network is `test` or a network parameter can be added
+
+```
+./runGhostMarketERC721_tests.sh avalanchetestnet
 ```
 
 ## Verifying contracts
 
 ```
-hardhat --network <network_name> sourcify
+hardhat verify --network <network_name> <0x_contract_address>
 ```
-example:
-```
-hardhat --network testnet sourcify
-```
+
 Check if verification was a success:
 
 [testnet](https://cchain.explorer.avax-test.network/)
